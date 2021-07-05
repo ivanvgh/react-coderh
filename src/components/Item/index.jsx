@@ -1,6 +1,6 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardActions, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core';
 import React from 'react'
-
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
@@ -37,13 +37,10 @@ const Item = ({ item }) => {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
-                    Details
-                        </Button>
+                <Link to={`/item/${item.id}`}>Details</Link>
             </CardActions>
         </Card>
     );
 };
-
 
 export default Item;
