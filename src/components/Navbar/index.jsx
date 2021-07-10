@@ -1,16 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-} from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+
+import { Link, useHistory } from 'react-router-dom';
 import { Menu, MenuItem } from '@material-ui/core';
 import { CartWidget } from '../CartWidget';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
     marginBottom: 30,
@@ -25,26 +25,30 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MenuAppBar() {
+  const history = useHistory(); // Encontré este hook para poder navegar con history.
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const handleProfileMenuOpen = (event) => {
+  const handleCategoryMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (test) => {
+  const handleClose = (categoryId) => {
     setAnchorEl(null);
+    if (typeof categoryId === 'string') {
+      history.push(`/category/${categoryId}`);
+    }
   };
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            VanQuor
+            <Link className={classes.linkButton} to={`/`}>VanQuor</Link>
           </Typography>
-          <MenuItem onClick={handleProfileMenuOpen}>
+          <MenuItem onClick={handleCategoryMenuOpen}>
             <IconButton aria-label="display more actions" edge="end" color="inherit">
               <ArrowDropDownIcon />
             </IconButton>
