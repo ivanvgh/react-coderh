@@ -14,6 +14,7 @@ const useStyles = makeStyles({
 
 const Item = ({ item }) => {
     const classes = useStyles();
+
     return (
         <Card className={classes.root}>
             <CardActionArea>
@@ -31,7 +32,7 @@ const Item = ({ item }) => {
                     <Typography variant="body2" color="textSecondary" component="p">
                         {item.description}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="h6" component="h6">
                         $ {item.price}
                     </Typography>
                 </CardContent>
