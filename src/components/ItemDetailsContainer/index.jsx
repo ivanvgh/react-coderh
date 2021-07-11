@@ -1,7 +1,7 @@
 import { Container } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ItemDetail } from '../ItenDetail';
+import { ItemDetail } from '../ItemDetail';
 import { MenuAppBar } from '../Navbar';
 
 import './index.scss';

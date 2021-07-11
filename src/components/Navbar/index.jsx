@@ -7,8 +7,9 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 import { Link, useHistory } from 'react-router-dom';
-import { Menu, MenuItem } from '@material-ui/core';
+import { Badge, Menu, MenuItem } from '@material-ui/core';
 import { CartWidget } from '../CartWidget';
+import { UseCartContext } from '../../contexts/CartContext';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -24,8 +25,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function MenuAppBar() {
-  const history = useHistory(); // Encontré este hook para poder navegar con history.
+const MenuAppBar = () => {
+  const { cart } = UseCartContext();
+  const history = useHistory();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -68,12 +70,15 @@ function MenuAppBar() {
             <MenuItem onClick={() => handleClose("men's%20clothing")}>Men's clothing</MenuItem>
             <MenuItem onClick={() => handleClose("women's%20clothing")}>Nomen's clothing</MenuItem>
           </Menu>
-          <CartWidget />
+          <Badge badgeContent={cart.length} color="secondary">
+            <CartWidget />
+          </Badge>
+
         </Toolbar>
       </AppBar>
     </div>
   );
-}
+};
 
 export { MenuAppBar };
 
