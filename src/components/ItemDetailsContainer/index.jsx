@@ -9,20 +9,22 @@ import './index.scss';
 const ItemDetailsContainer = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch(`https://fakestoreapi.com/products/${id}`)
-        .then(res => res.json())
-        .then(json => setProduct(json));
-    }, 1000);
+    fetch(`https://fakestoreapi.com/products/${id}`)
+      .then(res => res.json())
+      .then(json => {
+        setProduct(json);
+        setLoading(false);
+      });
   }, [id]);
 
   return (
     <Container fixed>
       <MenuAppBar />
       <div className="item__container">
-        <ItemDetail item={product} />
+        <ItemDetail item={product} loading={loading} />
       </div>
     </Container>
   );

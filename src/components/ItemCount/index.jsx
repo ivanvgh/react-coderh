@@ -12,23 +12,16 @@ const useStyles = makeStyles((theme) => ({
     margin: {
         margin: theme.spacing(5),
     },
-    extendedIcon: {
-        marginRight: theme.spacing(1),
-    },
 }));
 
 function ItemCount({ count, setCount }) {
     const classes = useStyles();
-    const handleIncrementCount = () => setCount(count + 1);
-    const handleDecrementCount = () => {
-        if (count > 0) setCount(count - 1);
-    };
 
     return (
         <div className={classes.counterContainer}>
-            <Button size="small" variant="contained" onClick={handleDecrementCount} className={classes.margin}>-</Button>
+            <Button size="small" variant="contained" onClick={() => setCount(count-1 ? count - 1 : count)} className={classes.margin}>-</Button>
             <h2>{count}</h2>
-            <Button size="small" variant="contained" onClick={handleIncrementCount} className={classes.margin}>+</Button>
+            <Button size="small" variant="contained" onClick={() => setCount(count + 1)} className={classes.margin}>+</Button>
         </div>
     );
 }
