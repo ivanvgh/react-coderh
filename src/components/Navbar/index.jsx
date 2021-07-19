@@ -32,6 +32,8 @@ const MenuAppBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
+  const cartItems = cart.reduce((acum, item) => acum + item.quantity, 0);
+
   const handleCategoryMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -70,9 +72,13 @@ const MenuAppBar = () => {
             <MenuItem onClick={() => handleClose("men's%20clothing")}>Men's clothing</MenuItem>
             <MenuItem onClick={() => handleClose("women's%20clothing")}>Nomen's clothing</MenuItem>
           </Menu>
-          <Badge badgeContent={cart.length} color="secondary">
-            <CartWidget />
-          </Badge>
+          {
+            cart.length > 0 &&
+            <Badge badgeContent={cartItems} color="secondary">
+              <CartWidget />
+            </Badge>
+          }
+
 
         </Toolbar>
       </AppBar>
