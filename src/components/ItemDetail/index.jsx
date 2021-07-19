@@ -32,7 +32,7 @@ const useStyles = makeStyles({
 
 const ItemDetail = ({ item, loading }) => {
     const classes = useStyles();
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(0);
     const { cart, addItem } = UseCartContext();
 
     const onAddToCart = () => {
@@ -64,15 +64,16 @@ const ItemDetail = ({ item, loading }) => {
                 <ItemCount
                     count={count}
                     setCount={setCount}
+                    minCount={0}
                 />
-                <Button variant="contained" color="secondary" onClick={onAddToCart}>
+                <Button variant="contained" color="secondary" onClick={onAddToCart} disabled={count?false:true}>
                     Add to cart
                 </Button>
                 {
                     cart.length > 0 &&
                     <>
                         <br />
-                        <Button variant="contained" color="secondary" onClick={onAddToCart}>
+                        <Button variant="contained" color="secondary">
                             <Link to="/cart" style={{color:'inherit', textDecoration:'none'}}>Checkout</Link>
                         </Button>
                     </>
