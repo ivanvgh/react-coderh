@@ -70,7 +70,7 @@ const MenuAppBar = () => {
             <MenuItem onClick={() => handleClose("electronics")}>Electronics</MenuItem>
             <MenuItem onClick={() => handleClose("jewelery")}>Jewelery</MenuItem>
             <MenuItem onClick={() => handleClose("men's%20clothing")}>Men's clothing</MenuItem>
-            <MenuItem onClick={() => handleClose("women's%20clothing")}>Nomen's clothing</MenuItem>
+            <MenuItem onClick={() => handleClose("women's%20clothing")}>Women's clothing</MenuItem>
           </Menu>
           {
             cart.length > 0 &&

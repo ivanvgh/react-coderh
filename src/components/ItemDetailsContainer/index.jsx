@@ -2,6 +2,7 @@ import { Container } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ItemDetail } from '../ItemDetail';
+import { db } from '../../Firebase';
 import { MenuAppBar } from '../Navbar';
 
 import './index.scss';
@@ -12,12 +13,11 @@ const ItemDetailsContainer = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then(res => res.json())
-      .then(json => {
-        setProduct(json);
+    db.collection("products").doc(id).get().then((doc) => {
+        console.log(doc.data())
+        setProduct({ ...doc.data(), id: doc.id });
         setLoading(false);
-      });
+    });
   }, [id]);
 
   return (
