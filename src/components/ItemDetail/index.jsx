@@ -35,9 +35,15 @@ const ItemDetail = ({ item, loading }) => {
     const [count, setCount] = useState(0);
     const { cart, addItem } = UseCartContext();
 
+    const cartItem = cart.find(cartLine => cartLine.item.id == item.id);
+    let availableStock = item.stock;
+    if (cartItem) {
+        availableStock = availableStock - cartItem.quantity;
+    }
+
     const onAddToCart = () => {
-        setCount(1);
         addItem(item, count);
+        setCount(0);
     };
 
     if (loading) {
@@ -65,8 +71,10 @@ const ItemDetail = ({ item, loading }) => {
                     count={count}
                     setCount={setCount}
                     minCount={0}
+                    stock={availableStock}
+                    showStock={true}
                 />
-                <Button variant="contained" color="secondary" onClick={onAddToCart} disabled={count?false:true}>
+                <Button variant="contained" color="secondary" onClick={onAddToCart} disabled={count ? false : true}>
                     Add to cart
                 </Button>
                 {
@@ -74,7 +82,7 @@ const ItemDetail = ({ item, loading }) => {
                     <>
                         <br />
                         <Button variant="contained" color="secondary">
-                            <Link to="/cart" style={{color:'inherit', textDecoration:'none'}}>Checkout</Link>
+                            <Link to="/cart" style={{ color: 'inherit', textDecoration: 'none' }}>Checkout</Link>
                         </Button>
                     </>
                 }

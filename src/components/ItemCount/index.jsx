@@ -1,6 +1,7 @@
 import { Button, makeStyles, TextField, ButtonGroup } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import { Alert } from '@material-ui/lab';
 import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,9 +22,12 @@ const useStyles = makeStyles((theme) => ({
     margin: {
         margin: theme.spacing(5),
     },
+    stockMessage: {
+        marginRight: 10,
+    }
 }));
 
-const ItemCount = ({ count, setCount, minCount }) => {
+const ItemCount = ({ count, setCount, minCount, stock, showStock }) => {
     const classes = useStyles();
 
     const handleChange = (e) => {
@@ -38,6 +42,18 @@ const ItemCount = ({ count, setCount, minCount }) => {
 
     return (
         <div className={classes.counterContainer}>
+            {
+                showStock &&
+                <>
+                    {
+                        stock ?
+                            <Alert className={classes.stockMessage} severity="success">Hurry up! <b>{stock}</b> item(s) in stock.</Alert>
+                            :
+                            <Alert className={classes.stockMessage} severity="error">Sorry, we are out of stock now.</Alert>
+                    }
+                </>
+            }
+
             <TextField
                 className={classes.counterField}
                 size="small"
@@ -51,12 +67,13 @@ const ItemCount = ({ count, setCount, minCount }) => {
             />
             <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
                 <Button
-                    onClick={() => setCount(count + 1)}
+                    onClick={() => setCount(count < stock ? count + 1 : count)}
                 ><AddIcon /></Button>
                 <Button
                     onClick={() => setCount(count <= minCount ? count : count - 1)}
                 ><RemoveIcon /></Button>
             </ButtonGroup>
+
         </div>
     );
 };
