@@ -13,11 +13,23 @@ const ItemDetailsContainer = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    db.collection("products").doc(id).get().then((doc) => {
-        console.log(doc.data())
-        setProduct({ ...doc.data(), id: doc.id });
-        setLoading(false);
+    db.collection('products').doc(id).get().then((doc) => {
+      console.log(doc.data());
+      setProduct({ ...doc.data(), id: doc.id });
+      setLoading(false);
     });
+
+
+
+    // db.collection("products").get().then((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     const batch =db.batch();
+    //     batch.update(db.collection("products").doc(doc.id), { 'stock': 20 });
+    //     batch.commit().then(r => console.log(r));
+    //   });
+    // });
+
+
   }, [id]);
 
   return (

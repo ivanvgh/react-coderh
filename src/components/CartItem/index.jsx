@@ -79,11 +79,17 @@ const CartItem = ({ cartLine }) => {
                 </Grid>
                 <Grid item xs={4} container direction="row" spacing={2}>
                     <Grid item xs>
-                        <ItemCount count={count} setCount={setCount} minCount={1}></ItemCount>
+                        <ItemCount
+                            count={count}
+                            setCount={setCount}
+                            minCount={1}
+                            stock={item.stock}
+                            showStock={false}
+                        ></ItemCount>
                     </Grid>
                 </Grid>
                 <Grid item xs={2}>
-                    <Typography variant="subtitle1">$ {totalPrice?totalPrice.toFixed(2):totalPrice}</Typography>
+                    <Typography variant="subtitle1">$ {totalPrice ? totalPrice.toFixed(2) : totalPrice}</Typography>
                 </Grid>
             </Grid>
         </ListItem>
