@@ -1,4 +1,5 @@
 import { Button, Grid } from '@material-ui/core';
+import { Check } from '@material-ui/icons';
 import React from 'react';
 import { Input } from '../Controls';
 import { Form } from '../Form/Index';
@@ -72,7 +73,7 @@ const ShippingForm = ({ values, handleChange, onSubmit }) => {
           />
         </Grid>
         <Grid item container xs={12} direction='row' justifyContent='flex-end'>
-          <Button type='submit' variant="contained" color="secondary">
+          <Button type='submit' variant="contained" color="secondary" endIcon={<Check />}>
             Confirm order
           </Button>
         </Grid>

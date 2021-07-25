@@ -8,6 +8,7 @@ import { UseCartContext } from '../../contexts/CartContext';
 import { db } from '../../Firebase';
 import { UseLocalStorage } from '../../Hooks/UseLocalStorage';
 import { Link, useHistory } from 'react-router-dom';
+import { ArrowBack, ShoppingBasket } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,9 +40,13 @@ const CheckoutContainer = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const totalPrice =  cart.reduce((acum, item) => acum + item.totalPrice, 0);
+
         const newOrder = {
+            buyer: values,
             items: [...cart],
-            buyer: values
+            total: totalPrice,
         };
         orders.add(newOrder).then(({ id }) => {
             console.log(id);
@@ -77,12 +82,12 @@ const CheckoutContainer = () => {
                 <br />
                 <Grid container spacing={2}>
                     <Grid item xs={12} container justifyContent='flex-end'>
-                        <Button variant="contained" color="primary" component={Link} to='/cart'>
+                        <Button variant="contained" color="primary" component={Link} to='/cart' endIcon={<ShoppingBasket />}>
                             Back to cart
                         </Button>
                     </Grid>
                     <Grid item xs={12} container justifyContent='flex-end'>
-                        <Button variant="contained" color="default" component={Link} to='/' >
+                        <Button variant="contained" color="default" component={Link} to='/' startIcon={<ArrowBack />}>
                             Back to shopping
                         </Button>
                     </Grid>

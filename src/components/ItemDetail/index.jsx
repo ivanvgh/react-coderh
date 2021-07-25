@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { UseCartContext } from '../../contexts/CartContext';
 import { ItemCount } from '../ItemCount';
 import { useSnackbar } from 'notistack';
+import { ArrowForward, ArrowRight, ShoppingBasket } from '@material-ui/icons';
 
 const useStyles = makeStyles({
     loadingContainer: {
@@ -71,14 +72,27 @@ const ItemDetail = ({ item, loading }) => {
                     />
                     <Grid container spacing={2} justifyContent='flex-end' >
                         <Grid item container xs={12} justifyContent='flex-end'>
-                            <Button variant="contained" color="secondary" onClick={onAddToCart} disabled={count ? false : true}>
+                            <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={onAddToCart}
+                            disabled={count ? false : true}
+                            endIcon={<ShoppingBasket />}
+                            >
                                 Add to cart
                             </Button>
                         </Grid>
 
 
                         <Grid item container xs={12} justifyContent='flex-end'>
-                            <Button component={Link} to="/cart" variant="contained" color="primary" disabled={cart.length ? false : true}>
+                            <Button
+                            component={Link}
+                            to="/cart"
+                            variant="contained"
+                            color="primary"
+                            disabled={cart.length ? false : true}
+                            endIcon={<ArrowForward />}
+                            >
                                 Go to cart
                             </Button>
                         </Grid>
