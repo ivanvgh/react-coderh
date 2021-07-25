@@ -1,4 +1,5 @@
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, makeStyles, Typography } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import React from 'react';
 import { Link } from 'react-router-dom';
 const useStyles = makeStyles({
@@ -35,11 +36,21 @@ const Item = ({ item }) => {
                     <Typography variant="h6" component="h6">
                         $ {item.price}
                     </Typography>
+                    <Typography variant="h6" component="h6">
+                        {
+                            item.stock == 0 &&
+                            <Alert severity="error">Out of stock.</Alert>
+                        }
+                    </Typography>
+
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <Link to={`/item/${item.id}`}>Details</Link>
-            </CardActions>
+            {
+                item.stock > 0 &&
+                <CardActions>
+                    <Link to={`/item/${item.id}`}>Details</Link>
+                </CardActions>
+            }
         </Card>
     );
 };

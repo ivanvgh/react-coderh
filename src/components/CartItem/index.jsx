@@ -1,4 +1,4 @@
-import { Button, Container, Divider, Grid, List, ListItem, ListItemText, Typography } from '@material-ui/core';
+import { Button, Grid, ListItem, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Delete } from '@material-ui/icons';
 import React, { useState } from 'react';
