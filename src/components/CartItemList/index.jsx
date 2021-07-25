@@ -1,4 +1,4 @@
-import { Container, Divider, Grid, List, ListItem, ListItemText, Typography } from '@material-ui/core';
+import { Divider, List} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import { UseCartContext } from '../../contexts/CartContext';

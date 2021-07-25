@@ -82,7 +82,7 @@ const ItemDetail = ({ item, loading }) => {
                     <>
                         <br />
                         <Button variant="contained" color="secondary">
-                            <Link to="/cart" style={{ color: 'inherit', textDecoration: 'none' }}>Checkout</Link>
+                            <Link to="/cart" style={{ color: 'inherit', textDecoration: 'none' }}>Go to cart</Link>
                         </Button>
                     </>
                 }

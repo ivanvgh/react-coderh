@@ -1,4 +1,4 @@
-import { Button, Container, Divider, Grid, List, ListItem, ListItemText, Typography } from '@material-ui/core';
+import { Button, Container,Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -46,7 +46,13 @@ const CartContainer = () => {
                                 <Grid item xs={4} className={classes.footer}>
                                     <h3>$ {totalCartPrice ? totalCartPrice.toFixed(2) : totalCartPrice}</h3>
                                 </Grid>
+                                <Grid item xs={12} >
+                                <Button variant="contained" color="secondary">
+                                    <Link to="/checkout" style={{ color: 'inherit', textDecoration: 'none' }}>Checkout</Link>
+                                </Button>
                             </Grid>
+                            </Grid>
+
                         </>
                         :
                         <>
