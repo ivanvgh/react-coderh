@@ -30,7 +30,6 @@ const CartProvider = ({ children }) => {
     };
 
     const updateItem = (item, quantity) => {
-        console.log('updateItem')
         if (isInCart(item.id)) {
             const newCart = cart.map(cart => {
                 if (cart.item.id === item.id) {

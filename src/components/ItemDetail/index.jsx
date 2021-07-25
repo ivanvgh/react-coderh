@@ -1,9 +1,11 @@
-import { Button, CircularProgress, makeStyles, Typography } from '@material-ui/core';
+import { Button, CircularProgress, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UseCartContext } from '../../contexts/CartContext';
 import { ItemCount } from '../ItemCount';
+import { useSnackbar } from 'notistack';
+
 const useStyles = makeStyles({
     loadingContainer: {
         width: '100%',
@@ -12,25 +14,14 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    detailContainer: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-    },
     image: {
-        width: "20vw",
-        padding: "50px",
-    },
-    detail: {
-        padding: "50px 10px 50px 150px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        alignItems: "flex-end",
+        width: "16vw",
+        height: 'auto',
     },
 });
 
 const ItemDetail = ({ item, loading }) => {
+    const { enqueueSnackbar } = useSnackbar();
     const classes = useStyles();
     const [count, setCount] = useState(0);
     const { cart, addItem } = UseCartContext();
@@ -42,6 +33,7 @@ const ItemDetail = ({ item, loading }) => {
     }
 
     const onAddToCart = () => {
+        enqueueSnackbar('Product added to you cart!', { variant: 'success' });
         addItem(item, count);
         setCount(0);
     };
@@ -55,39 +47,46 @@ const ItemDetail = ({ item, loading }) => {
     }
 
     return (
-        <div className={classes.detailContainer}>
-            <img className={classes.image} src={item.image} alt="" />
-            <div className={classes.detail}>
-                <Typography gutterBottom variant="h4" component="h4">
-                    {item.title} - {item.category}
-                </Typography>
-                <Typography gutterBottom variant="body2" color="textSecondary" component="p">
-                    {item.description}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="h5">
-                    $ {item.price}
-                </Typography>
-                <ItemCount
-                    count={count}
-                    setCount={setCount}
-                    minCount={0}
-                    stock={availableStock}
-                    showStock={true}
-                />
-                <Button variant="contained" color="secondary" onClick={onAddToCart} disabled={count ? false : true}>
-                    Add to cart
-                </Button>
-                {
-                    cart.length > 0 &&
-                    <>
-                        <br />
-                        <Button variant="contained" color="secondary">
-                            <Link to="/cart" style={{ color: 'inherit', textDecoration: 'none' }}>Go to cart</Link>
-                        </Button>
-                    </>
-                }
-            </div>
-        </div>
+        <Grid container spacing={2}>
+            <Grid item container xs={5} justifyContent='center'>
+                <img className={classes.image} src={item.image} alt="" />
+            </Grid>
+            <Grid item container xs={7} spacing={10}>
+                <Grid item container>
+                    <Typography gutterBottom variant="h4" component="h4">
+                        {item.title} - {item.category}
+                    </Typography>
+                    <Typography gutterBottom variant="body2" color="textSecondary" component="p">
+                        {item.description}
+                    </Typography>
+                    <Typography gutterBottom variant="h5" component="h5">
+                        $ {item.price}
+                    </Typography>
+                    <ItemCount
+                        count={count}
+                        setCount={setCount}
+                        minCount={0}
+                        stock={availableStock}
+                        showStock={true}
+                    />
+                    <Grid container spacing={2} justifyContent='flex-end' >
+                        <Grid item container xs={12} justifyContent='flex-end'>
+                            <Button variant="contained" color="secondary" onClick={onAddToCart} disabled={count ? false : true}>
+                                Add to cart
+                            </Button>
+                        </Grid>
+
+
+                        <Grid item container xs={12} justifyContent='flex-end'>
+                            <Button component={Link} to="/cart" variant="contained" color="primary" disabled={cart.length ? false : true}>
+                                Go to cart
+                            </Button>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     );
 };
 

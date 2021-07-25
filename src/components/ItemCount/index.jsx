@@ -34,9 +34,13 @@ const ItemCount = ({ count, setCount, minCount, stock, showStock }) => {
         const re = /^[0-9]{1,2}?$/g;
         let value = parseInt(e.target.value);
         if (re.test(value)) {
-            setCount(value);
+            if (value <= stock) {
+                setCount(value);
+            } else {
+                setCount(0);
+            }
         } else {
-            setCount(minCount);
+            setCount(0);
         }
     };
 

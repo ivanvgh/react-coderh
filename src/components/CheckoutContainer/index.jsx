@@ -7,7 +7,7 @@ import { ShippingForm } from '../ShippingForm';
 import { UseCartContext } from '../../contexts/CartContext';
 import { db } from '../../Firebase';
 import { UseLocalStorage } from '../../Hooks/UseLocalStorage';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -75,16 +75,18 @@ const CheckoutContainer = () => {
                     onSubmit={handleSubmit}
                 />
                 <br />
-                <Grid container justifyContent='flex-end'>
-                    <Button
-                        variant='outlined'
-                        color='default'
-                        onClick={() => history.push(`/`)}
-                    >
-                        Back to shopping
-                    </Button>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} container justifyContent='flex-end'>
+                        <Button variant="contained" color="primary" component={Link} to='/cart'>
+                            Back to cart
+                        </Button>
+                    </Grid>
+                    <Grid item xs={12} container justifyContent='flex-end'>
+                        <Button variant="contained" color="default" component={Link} to='/' >
+                            Back to shopping
+                        </Button>
+                    </Grid>
                 </Grid>
-
             </div>
         </Container>
     );
