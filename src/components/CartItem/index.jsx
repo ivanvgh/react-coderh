@@ -52,7 +52,7 @@ const CartItem = ({ cartLine }) => {
 
     return (
         <ListItem>
-            <Grid container spacing={10}>
+            <Grid container spacing={10} justifyContent="center" alignItems='center'>
                 <Grid item xs={2}>
                     <img
                         className={classes.img}
@@ -70,15 +70,12 @@ const CartItem = ({ cartLine }) => {
                             SKU: 91238989
                         </Typography>
                     </Grid>
-                    <Grid
-                        item container
-                        justifyContent="flex-start"
-                    >
+                    <Grid item container justifyContent="flex-start">
                         <Button onClick={handleRemoveClick}><Delete /></Button>
                     </Grid>
                 </Grid>
                 <Grid item xs={4} container direction="row" spacing={2}>
-                    <Grid item xs>
+                    <Grid item container xs>
                         <ItemCount
                             count={count}
                             setCount={setCount}
