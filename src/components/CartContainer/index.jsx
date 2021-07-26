@@ -1,4 +1,4 @@
-import { Button, Container, Grid } from '@material-ui/core';
+import { Button, Card, Container, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -8,18 +8,16 @@ import { MenuAppBar } from '../Navbar';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
+        padding: 20,
     },
     header: {
-        backgroundColor: 'whitesmoke',
+        backgroundColor: '#dbe3e3',
         textAlign: 'right',
-        marginRight: '57px'
+        marginRight: '15px'
     },
     footer: {
         textAlign: 'right',
-        marginRight: '45px'
+        marginRight: '15px'
     }
 }));
 
@@ -35,7 +33,7 @@ const CartContainer = () => {
             <div className="cart-lines" style={{ paddingTop: 100, width: '100%' }}>
                 {
                     cart.length ?
-                        <>
+                        <Card className={classes.root}>
                             <Grid container spacing={5} className={classes.header} justifyContent="flex-end">
                                 <Grid item xs={4} className={classes.header}>
                                     <h3>Total</h3>
@@ -51,14 +49,14 @@ const CartContainer = () => {
                                         Back to shopping
                                     </Button>
                                 </Grid>
-                                <Grid item xs={12} >
+                                <Grid item xs={12}>
                                     <Button component={Link} to='/checkout' variant="contained" color="secondary">
                                         Checkout
                                     </Button>
                                 </Grid>
                             </Grid>
 
-                        </>
+                        </Card>
                         :
                         <>
                             <Grid container spacing={10}>

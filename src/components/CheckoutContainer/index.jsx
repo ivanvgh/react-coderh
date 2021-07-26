@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Grid } from '@material-ui/core';
+import { Button, Container, Grid, Card } from '@material-ui/core';
 import { MenuAppBar } from '../Navbar';
 import { makeStyles } from '@material-ui/core/styles';
 import { UseForm } from '../../Hooks/UseForm';
@@ -14,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: '80%',
         margin: 'auto',
-        paddingTop: 100,
+        marginTop: 100,
+        padding: 20,
+        textAlign: 'center'
     },
 }));
 
@@ -72,7 +74,7 @@ const CheckoutContainer = () => {
     return (
         <Container maxWidth="md">
             <MenuAppBar />
-            <div className={classes.root}>
+            <Card className={classes.root}>
                 <h1>Shipping Address</h1>
                 <ShippingForm
                     values={values}
@@ -92,7 +94,7 @@ const CheckoutContainer = () => {
                         </Button>
                     </Grid>
                 </Grid>
-            </div>
+            </Card>
         </Container>
     );
 };

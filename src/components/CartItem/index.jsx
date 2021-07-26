@@ -8,18 +8,6 @@ import { UseCartContext } from '../../contexts/CartContext';
 import { ItemCount } from '../ItemCount';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1
-    },
-    paper: {
-        padding: theme.spacing(2),
-        margin: 'auto',
-        maxWidth: 500
-    },
-    image: {
-        width: 128,
-        height: 128
-    },
     img: {
         margin: 'auto',
         display: 'block',
@@ -52,7 +40,7 @@ const CartItem = ({ cartLine }) => {
 
     return (
         <ListItem>
-            <Grid container spacing={10} justifyContent="center" alignItems='center'>
+            <Grid container spacing={2} justifyContent="space-around" alignItems='center'>
                 <Grid item xs={2}>
                     <img
                         className={classes.img}
@@ -85,7 +73,7 @@ const CartItem = ({ cartLine }) => {
                         ></ItemCount>
                     </Grid>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item container xs={2} justifyContent='flex-end'>
                     <Typography variant="subtitle1">$ {totalPrice ? totalPrice.toFixed(2) : totalPrice}</Typography>
                 </Grid>
             </Grid>
