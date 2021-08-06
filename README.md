@@ -1,3 +1,4 @@
+![Shopping](https://user-images.githubusercontent.com/36037715/128455086-64c9546a-b0dd-4d72-b29a-0b388985eb26.gif)
 # Getting Started with VanQuor e-commerce.
 
 This project was created in purpose to represent an e-commerce.
