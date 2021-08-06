@@ -11,7 +11,10 @@ const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
     const addItem = (item, quantity) => {
-        console.log('addItem')
+        console.log('ADD ITEM')
+        console.log(item)
+        console.log(quantity)
+
         if (isInCart(item.id)) {
             const newCart = cart.map(cart => {
                 if (cart.item.id === item.id) {
@@ -25,11 +28,12 @@ const CartProvider = ({ children }) => {
 
             setCart(newCart);
         } else {
-            setCart(cart => [...cart, { item: { ...item }, quantity }]);
+            setCart(cart => [...cart, { item: { ...item }, quantity, totalPrice: item.price * quantity, }]);
         }
     };
 
     const updateItem = (item, quantity) => {
+        console.log('UPDATE ITEM')
         if (isInCart(item.id)) {
             const newCart = cart.map(cart => {
                 if (cart.item.id === item.id) {

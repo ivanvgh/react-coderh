@@ -35,7 +35,8 @@ const ItemDetail = ({ item, loading }) => {
     if (cartItem) {
         availableStock = availableStock - cartItem.quantity;
     }
-
+    console.log('ItemDetail - ')
+    console.log(cart)
     const onAddToCart = () => {
         enqueueSnackbar('Product added to you cart!', { variant: 'success' });
         addItem(item, count);
