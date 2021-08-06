@@ -1,4 +1,4 @@
-# Getting Started with this Store app.
+# Getting Started with VanQuor app.
 
 This project was created in purpose to represent an e-commerce.
 
