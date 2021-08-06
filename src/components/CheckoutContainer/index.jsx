@@ -33,42 +33,15 @@ const initialValues = {
 
 const CheckoutContainer = () => {
     const classes = useStyles();
-    const { cart, clearCart } = UseCartContext();
     const { values, handleChange } = UseForm(initialValues);
-    const orders = db.collection('orders');
-    const { setValue } = UseLocalStorage("order", {});
+    const { setValue } = UseLocalStorage("shippingAddress", {});
     const history = useHistory();
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        const totalPrice =  cart.reduce((acum, item) => acum + item.totalPrice, 0);
-
-        const newOrder = {
-            buyer: values,
-            items: [...cart],
-            total: totalPrice,
-        };
-        orders.add(newOrder).then(({ id }) => {
-            console.log(id);
-            const order = {
-                ...newOrder,
-                id,
-            };
-
-            setValue(order);
-
-            cart.forEach(CartLine => {
-                const batch = db.batch();
-                batch.update(db.collection("products").doc(CartLine.item.id), { 'stock': CartLine.item.stock - CartLine.quantity });
-                batch.commit().then(r => console.log(r));
-                clearCart();
-            });
-
-            history.push(`/order`);
-
-        });
+        setValue(values);
+        history.push(`/confirm-checkout`);
     };
 
     return (
@@ -81,19 +54,6 @@ const CheckoutContainer = () => {
                     handleChange={handleChange}
                     onSubmit={handleSubmit}
                 />
-                <br />
-                <Grid container spacing={2}>
-                    <Grid item xs={12} container justifyContent='flex-end'>
-                        <Button variant="contained" color="primary" component={Link} to='/cart' endIcon={<ShoppingBasket />}>
-                            Back to cart
-                        </Button>
-                    </Grid>
-                    <Grid item xs={12} container justifyContent='flex-end'>
-                        <Button variant="contained" color="default" component={Link} to='/' startIcon={<ArrowBack />}>
-                            Back to shopping
-                        </Button>
-                    </Grid>
-                </Grid>
             </Card>
         </Container>
     );

@@ -98,6 +98,11 @@ const ItemDetail = ({ item, loading }) => {
                                     Go to cart
                                 </Button>
                             </Grid>
+                            <Grid item container xs={12} justifyContent='flex-end'>
+                                <Button variant="contained" color="default" component={Link} to='/'>
+                                    Back to shopping
+                                </Button>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>

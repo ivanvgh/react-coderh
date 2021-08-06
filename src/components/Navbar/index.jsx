@@ -23,6 +23,9 @@ const useStyles = makeStyles(() => ({
   title: {
     flexGrow: 1,
   },
+  logo: {
+    width: 100,
+  }
 }));
 
 const MenuAppBar = () => {
@@ -50,7 +53,9 @@ const MenuAppBar = () => {
       <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Link className={classes.linkButton} to={`/`}>VanQuor</Link>
+            <Link className={classes.linkButton} to={`/`}>
+              <img className={classes.logo} src="https://ivanvgh.github.io/store/images/logo.png"></img>
+            </Link>
           </Typography>
           <MenuItem onClick={handleCategoryMenuOpen}>
             <IconButton aria-label="display more actions" edge="end" color="inherit">
